@@ -1,0 +1,8 @@
+{
+	"powers": [
+		"tsaso:dealmaker"
+	],
+	"icon": "minecraft:torchflower",
+	"order": 1,
+	"impact": 2
+}

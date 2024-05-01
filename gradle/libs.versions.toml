@@ -1,0 +1,38 @@
+[versions]
+# The latest versions are available at https://lambdaurora.dev/tools/import_quilt.html
+minecraft = "1.20.1"
+loom = "1.6.+"
+
+quilt_mappings = "1.20.1+build.23"
+quilt_loader = "0.24.0"
+
+quilted_fabric_api = "7.5.0+0.91.0-1.20.1"
+origins = "v1.10.0"
+apoli = "2.9.0"
+pehkui = "3.8.0"
+cca = "5.1.0"
+satin = "1.14.0"
+sparkweave = "0.4.1"
+
+[libraries]
+minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
+quilt_mappings = { module = "org.quiltmc:quilt-mappings", version.ref = "quilt_mappings" }
+quilt_loader = { module = "org.quiltmc:quilt-loader", version.ref = "quilt_loader" }
+
+quilted_fabric_api = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api", version.ref = "quilted_fabric_api" }
+quilted_fabric_api_deprecated = { module = "org.quiltmc.quilted-fabric-api:quilted-fabric-api-deprecated", version.ref = "quilted_fabric_api" }
+origins = { module = "com.github.apace100:origins-fabric", version.ref = "origins" }
+apoli = { module = "com.github.apace100:apoli", version.ref = "apoli" }
+pehkui = { module = "com.github.virtuoel:pehkui", version.ref = "pehkui" }
+cca_base = { module = "dev.onyxstudios.cardinal-components-api:cardinal-components-base", version.ref = "cca" }
+cca_entity = { module = "dev.onyxstudios.cardinal-components-api:cardinal-components-entity", version.ref = "cca" }
+satin = { module = "org.ladysnake:satin", version.ref = "satin" }
+sparkweave = { module = "dev.upcraft.sparkweave:Sparkweave-Quilt", version.ref = "sparkweave" }
+
+# If you have multiple similar dependencies, you can declare a dependency bundle and reference it on the build script with "libs.bundles.example".
+[bundles]
+quilted_fabric_api = ["quilted_fabric_api", "quilted_fabric_api_deprecated"]
+cca = ["cca_base", "cca_entity"]
+
+[plugins]
+quilt_loom = { id = "org.quiltmc.loom", version.ref = "loom" }

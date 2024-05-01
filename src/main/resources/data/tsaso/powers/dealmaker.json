@@ -1,0 +1,9 @@
+{
+	"type": "tsaso:dealmaker",
+	"maximum_deals": 3,
+	"active_by_default": false,
+	"key": {
+		"key": "key.origins.primary_active",
+		"continuous": false
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"origin.tsaso.faeborn.name": "Faeborn",
+	"origin.tsaso.faeborn.description": "Faeborn are the children of fae and humans. Due to their fae heritage, they are able to make magical pacts with other people.",
+	"power.tsaso.dealmaker.name": "Dealmaker",
+	"power.tsaso.dealmaker.description": "You can make up to 3 deals with other players, giving them a power and allowing you to clone one of their powers.\n\nYou can also make deals with Villagers for defending against a raid. All deals end upon your death.",
+	"power.tsaso.ferrophobic.name": "Ferrophobic",
+	"power.tsaso.ferrophobic.description": "All metal tools and armor hurt you when held or worn. Metal tools will deal double damage when you're attacked with them.",
+
+	"screen.tsaso.origins.make_a_deal": "Make a Deal",
+	"screen.tsaso.origins.accept_deal": "Accept Deal",
+	"screen.tsaso.origins.waiting_on_other_player": "Waiting on other player..."
+}

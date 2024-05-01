@@ -1,0 +1,123 @@
+plugins {
+	id 'maven-publish'
+	alias libs.plugins.quilt.loom
+}
+
+base {
+	archivesName = project.archives_base_name
+}
+
+version = "$project.version+${libs.versions.minecraft.get()}"
+group = project.maven_group
+
+loom {
+	mods {
+		"tsaso" {
+			sourceSet("main")
+		}
+	}
+
+	accessWidenerPath.set(project.file("src/main/resources/tsaso.accesswidener"))
+}
+
+project.configurations.configureEach {
+	exclude(group: "net.fabricmc", module: "fabric-loader")
+	exclude(group: "net.fabricmc.fabric-api")
+}
+
+repositories {
+	maven {
+		name = "Lopa"
+		url = "https://maven.uuid.gg/releases"
+	}
+	maven {
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com"
+	}
+	maven {
+		name = "Ladysnake Libs"
+		url = "https://maven.ladysnake.org/releases"
+	}
+	maven {
+		name = "CafeteriaDev"
+		url = "https://maven.cafeteria.dev"
+		content {
+			includeGroup 'net.adriantodt.fabricmc'
+		}
+	}
+	maven {
+		name = "JamiesWhiteShirt"
+		url = "https://maven.jamieswhiteshirt.com/libs-release"
+		content {
+			includeGroup "com.jamieswhiteshirt"
+		}
+	}
+	maven {
+		name = "Shedaniel"
+		url = "https://maven.shedaniel.me/"
+	}
+	maven {
+		name = "Modrinth"
+		url = "https://api.modrinth.com/maven"
+		content {
+			includeGroup "maven.modrinth"
+		}
+	}
+	maven {
+		name = "JitPack"
+		url = "https://jitpack.io"
+	}
+}
+
+dependencies {
+	minecraft libs.minecraft
+	mappings variantOf(libs.quilt.mappings) { classifier 'intermediary-v2' }
+	modImplementation libs.quilt.loader
+
+	modImplementation libs.quilted.fabric.api
+	modImplementation libs.origins
+	modImplementation libs.apoli
+	modImplementation libs.pehkui
+	modImplementation libs.bundles.cca
+	modImplementation libs.satin
+
+	modImplementation (libs.sparkweave) {
+		exclude(group: "io.github.llamalad7")
+	}
+}
+
+processResources {
+	inputs.properties 'version': version, 'group': project.group
+
+	filesMatching('quilt.mod.json') {
+		expand 'version': version, 'group': project.group
+	}
+}
+
+tasks.withType(JavaCompile).configureEach {
+	it.options.encoding = 'UTF-8'
+	it.options.release = 17
+}
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
+	withSourcesJar()
+}
+
+jar {
+	from('LICENSE') {
+		rename { "${it}_${base.archivesName.get()}" }
+	}
+}
+
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			from components.java
+		}
+	}
+
+	repositories {
+	}
+}

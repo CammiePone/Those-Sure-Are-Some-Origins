@@ -1,0 +1,49 @@
+{
+	"schema_version": 1,
+	"quilt_loader": {
+		"group": "${group}",
+		"id": "tsaso",
+		"version": "${version}",
+		"metadata": {
+			"name": "Mod Name",
+			"description": "A short description of your mod.",
+			"contributors": {
+				"Cammie": "Owner"
+			},
+			"contact": {
+				"homepage": "https://cammiescorner.dev/",
+				"issues": "https://github.com/CammiePone/Those-Sure-Are-Some-Origins/issues",
+				"sources": "https://github.com/CammiePone/Those-Sure-Are-Some-Origins"
+			},
+			"icon": "assets/tsaso/icon.png"
+		},
+		"intermediate_mappings": "net.fabricmc:intermediary",
+		"entrypoints": {
+			"init": "dev.cammiescorner.tsaso.TSASO",
+			"client_init": "dev.cammiescorner.tsaso.client.TSASOClient",
+			"cardinal-components": "dev.cammiescorner.tsaso.common.registry.ComponentRegistry"
+		},
+		"depends": [
+			{
+				"id": "quilt_loader",
+				"versions": ">=0.19.1"
+			},
+			{
+				"id": "quilted_fabric_api",
+				"versions": ">=7.0.2"
+			},
+			{
+				"id": "minecraft",
+				"versions": ">=1.20"
+			}
+		]
+	},
+	"cardinal-components": [
+		"tsaso:power_sources",
+		"tsaso:random_powers",
+		"tsaso:make_a_deal",
+		"tsaso:shake_my_hand"
+	],
+	"mixin": "tsaso.mixins.json",
+	"access_widener": "tsaso.accesswidener"
+}
