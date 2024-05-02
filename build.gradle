@@ -57,6 +57,10 @@ repositories {
 		url = "https://maven.shedaniel.me/"
 	}
 	maven {
+		name = "Team Resourceful"
+		url = "https://nexus.resourcefulbees.com/repository/maven-public/"
+	}
+	maven {
 		name = "Modrinth"
 		url = "https://api.modrinth.com/maven"
 		content {
@@ -80,6 +84,8 @@ dependencies {
 	modImplementation libs.pehkui
 	modImplementation libs.bundles.cca
 	modImplementation libs.satin
+	modImplementation libs.resourceful.config
+	modImplementation libs.modmenu
 
 	modImplementation (libs.sparkweave) {
 		exclude(group: "io.github.llamalad7")

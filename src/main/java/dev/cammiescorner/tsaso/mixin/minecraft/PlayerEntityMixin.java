@@ -27,7 +27,7 @@ public abstract class PlayerEntityMixin extends LivingEntity {
 
 	@Inject(method = "interact", at = @At("HEAD"), cancellable = true)
 	private void tsaso$makeADeal(Entity entity, Hand hand, CallbackInfoReturnable<ActionResult> info) {
-		if(entity instanceof PlayerEntity otherPlayer && otherPlayer.getComponent(ComponentRegistry.MAKE_A_DEAL).initiateDeal(this) && getComponent(ComponentRegistry.MAKE_A_DEAL).initiateDeal(otherPlayer) && otherPlayer.getComponent(ComponentRegistry.SHAKE_MY_HAND).isHandRaised() && PowerHolderComponent.hasPower(otherPlayer, DealmakerPower.class)) {
+		if(entity instanceof PlayerEntity otherPlayer && PowerHolderComponent.hasPower(otherPlayer, DealmakerPower.class) && otherPlayer.getComponent(ComponentRegistry.MAKE_A_DEAL).initiateDeal(this) && getComponent(ComponentRegistry.MAKE_A_DEAL).initiateDeal(otherPlayer) && otherPlayer.getComponent(ComponentRegistry.SHAKE_MY_HAND).isHandRaised()) {
 			// open screen for me
 			TSASO.openMakeADealScreen(self, getComponent(ComponentRegistry.RANDOM_POWERS).viewPowerTypes());
 

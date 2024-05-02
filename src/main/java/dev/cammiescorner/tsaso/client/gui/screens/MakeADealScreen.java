@@ -1,7 +1,7 @@
 package dev.cammiescorner.tsaso.client.gui.screens;
 
 import dev.cammiescorner.tsaso.TSASO;
-import dev.cammiescorner.tsaso.common.components.MakeADealComponent;
+import dev.cammiescorner.tsaso.common.components.entity.MakeADealComponent;
 import dev.cammiescorner.tsaso.common.packets.ChosenDealPacket;
 import dev.cammiescorner.tsaso.common.packets.CloseDealPacket;
 import dev.cammiescorner.tsaso.common.registry.ComponentRegistry;

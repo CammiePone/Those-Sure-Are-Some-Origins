@@ -9,7 +9,6 @@
 	],
 	"client": [
 		"minecraft.client.BipedEntityModelMixin",
-		"minecraft.client.ClientPlayerEntityMixin",
 		"minecraft.client.HeldItemFeatureRendererMixin",
 		"minecraft.client.HeldItemRendererMixin",
 		"origins.client.OriginDisplayScreenMixin"

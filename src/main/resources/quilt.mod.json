@@ -5,8 +5,8 @@
 		"id": "tsaso",
 		"version": "${version}",
 		"metadata": {
-			"name": "Mod Name",
-			"description": "A short description of your mod.",
+			"name": "Those Sure Are Some Origins",
+			"description": "Adds a few new origins for the Origins mod",
 			"contributors": {
 				"Cammie": "Owner"
 			},
@@ -42,7 +42,9 @@
 		"tsaso:power_sources",
 		"tsaso:random_powers",
 		"tsaso:make_a_deal",
-		"tsaso:shake_my_hand"
+		"tsaso:shake_my_hand",
+		"tsaso:last_death_player",
+		"tsaso:last_death_level"
 	],
 	"mixin": "tsaso.mixins.json",
 	"access_widener": "tsaso.accesswidener"

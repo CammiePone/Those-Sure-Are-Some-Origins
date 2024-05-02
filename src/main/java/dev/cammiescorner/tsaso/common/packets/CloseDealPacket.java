@@ -1,9 +1,8 @@
 package dev.cammiescorner.tsaso.common.packets;
 
 import dev.cammiescorner.tsaso.TSASO;
-import dev.cammiescorner.tsaso.common.components.MakeADealComponent;
-import dev.cammiescorner.tsaso.common.components.PowerSourcesComponent;
-import dev.cammiescorner.tsaso.common.components.ShakeMyHandComponent;
+import dev.cammiescorner.tsaso.common.components.entity.*;
+import dev.cammiescorner.tsaso.common.components.level.LastDeathLevelComponent;
 import dev.cammiescorner.tsaso.common.powers.DealmakerPower;
 import dev.cammiescorner.tsaso.common.registry.ComponentRegistry;
 import dev.upcraft.sparkweave.api.util.scheduler.Tasks;
@@ -19,6 +18,8 @@ import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 import org.quiltmc.qsl.networking.api.PacketSender;
 import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
+
+import java.util.UUID;
 
 public class CloseDealPacket {
 	public static final Identifier ID = TSASO.id("close_deal");
@@ -38,7 +39,11 @@ public class CloseDealPacket {
 			PowerSourcesComponent sourcesComponent = player.getComponent(ComponentRegistry.POWER_SOURCES);
 			MakeADealComponent dealComponent = player.getComponent(ComponentRegistry.MAKE_A_DEAL);
 			ShakeMyHandComponent shakeComponent = player.getComponent(ComponentRegistry.SHAKE_MY_HAND);
-			Identifier sourceId = TSASO.id(PowerHolderComponent.hasPower(player, DealmakerPower.class) ? player.getUuidAsString() : dealComponent.getOtherPlayer().getUuidAsString());
+			RandomPowersComponent randomPowersComponent = player.getComponent(ComponentRegistry.RANDOM_POWERS);
+			LastDeathPlayerComponent lastDeathPlayerComponent = player.getComponent(ComponentRegistry.LAST_DEATH_PLAYER);
+			LastDeathLevelComponent lastDeathLevelComponent = server.getScoreboard().getComponent(ComponentRegistry.LAST_DEATH_LEVEL);
+			UUID sourceUuid = PowerHolderComponent.hasPower(player, DealmakerPower.class) ? player.getUuid() : dealComponent.getOtherPlayer().getUuid();
+			Identifier sourceId = TSASO.id(sourceUuid.toString());
 
 			Tasks.scheduleEphemeral(() -> {
 				powerComponent.addPower(powerType, sourceId);
@@ -46,6 +51,8 @@ public class CloseDealPacket {
 				sourcesComponent.addSource(sourceId);
 				dealComponent.setHasChosenDeal(false);
 				shakeComponent.setHandRaised(false);
+				randomPowersComponent.rerollPowers();
+				lastDeathPlayerComponent.setLastDeathTime(sourceUuid, lastDeathLevelComponent.getLastDeathTime(sourceUuid));
 
 				if(dealComponent.getType() == MakeADealComponent.Type.VILLAGER)
 					player.removeStatusEffect(StatusEffects.HERO_OF_THE_VILLAGE);

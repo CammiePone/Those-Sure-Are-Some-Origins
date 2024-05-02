@@ -13,6 +13,8 @@ pehkui = "3.8.0"
 cca = "5.1.0"
 satin = "1.14.0"
 sparkweave = "0.4.1"
+resourceful_config = "2.1.2"
+modmenu = "7.2.2"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
@@ -26,13 +28,16 @@ apoli = { module = "com.github.apace100:apoli", version.ref = "apoli" }
 pehkui = { module = "com.github.virtuoel:pehkui", version.ref = "pehkui" }
 cca_base = { module = "dev.onyxstudios.cardinal-components-api:cardinal-components-base", version.ref = "cca" }
 cca_entity = { module = "dev.onyxstudios.cardinal-components-api:cardinal-components-entity", version.ref = "cca" }
+cca_scoreboard = { module = "dev.onyxstudios.cardinal-components-api:cardinal-components-scoreboard", version.ref = "cca" }
 satin = { module = "org.ladysnake:satin", version.ref = "satin" }
 sparkweave = { module = "dev.upcraft.sparkweave:Sparkweave-Quilt", version.ref = "sparkweave" }
+resourceful_config = { module = "com.teamresourceful.resourcefulconfig:resourcefulconfig-fabric-1.20.1", version.ref = "resourceful_config" }
+modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
 
 # If you have multiple similar dependencies, you can declare a dependency bundle and reference it on the build script with "libs.bundles.example".
 [bundles]
 quilted_fabric_api = ["quilted_fabric_api", "quilted_fabric_api_deprecated"]
-cca = ["cca_base", "cca_entity"]
+cca = ["cca_base", "cca_entity", "cca_scoreboard"]
 
 [plugins]
 quilt_loom = { id = "org.quiltmc.loom", version.ref = "loom" }

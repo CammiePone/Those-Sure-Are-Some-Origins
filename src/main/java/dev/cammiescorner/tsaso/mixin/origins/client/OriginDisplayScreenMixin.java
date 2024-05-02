@@ -2,7 +2,7 @@ package dev.cammiescorner.tsaso.mixin.origins.client;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import dev.cammiescorner.tsaso.common.components.PowerSourcesComponent;
+import dev.cammiescorner.tsaso.common.components.entity.PowerSourcesComponent;
 import dev.cammiescorner.tsaso.common.registry.ComponentRegistry;
 import io.github.apace100.apoli.component.PowerHolderComponent;
 import io.github.apace100.apoli.power.PowerType;

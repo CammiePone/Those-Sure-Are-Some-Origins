@@ -1,6 +1,7 @@
 {
 	"powers": [
-		"tsaso:dealmaker"
+		"tsaso:dealmaker",
+		"tsaso:ferrophobic"
 	],
 	"icon": "minecraft:torchflower",
 	"order": 1,

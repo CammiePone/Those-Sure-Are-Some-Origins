@@ -1,4 +1,4 @@
-package dev.cammiescorner.tsaso.common.components;
+package dev.cammiescorner.tsaso.common.components.entity;
 
 import dev.cammiescorner.tsaso.common.registry.ComponentRegistry;
 import dev.onyxstudios.cca.api.v3.component.sync.AutoSyncedComponent;

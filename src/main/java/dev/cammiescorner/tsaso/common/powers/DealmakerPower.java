@@ -1,14 +1,13 @@
 package dev.cammiescorner.tsaso.common.powers;
 
-import dev.cammiescorner.tsaso.common.components.ShakeMyHandComponent;
+import dev.cammiescorner.tsaso.TSASO;
+import dev.cammiescorner.tsaso.common.components.entity.ShakeMyHandComponent;
 import dev.cammiescorner.tsaso.common.registry.ComponentRegistry;
 import io.github.apace100.apoli.component.PowerHolderComponent;
 import io.github.apace100.apoli.power.Active;
 import io.github.apace100.apoli.power.Power;
 import io.github.apace100.apoli.power.PowerType;
 import net.minecraft.entity.LivingEntity;
-
-import java.util.UUID;
 
 public class DealmakerPower extends Power implements Active {
 	private Key key;
@@ -46,10 +45,9 @@ public class DealmakerPower extends Power implements Active {
 
 	public boolean hasMaximumDeals() {
 		return PowerHolderComponent.hasPower(entity, DealmakerPower.class, power -> {
-			long dealCount = entity.getComponent(ComponentRegistry.POWER_SOURCES).copyOfSources().stream().filter(identifier -> {
-				return UUID.fromString(identifier.getPath()).equals(entity.getUuid());
-			}).count();
+			long dealCount = entity.getComponent(ComponentRegistry.POWER_SOURCES).dealCount(TSASO.id(entity.getUuidAsString()));
 
+			System.out.println(dealCount);
 			return dealCount >= power.getMaximumDeals();
 		});
 	}
