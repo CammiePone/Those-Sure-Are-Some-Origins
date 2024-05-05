@@ -10,5 +10,7 @@ public class TSASOClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient(ModContainer mod) {
 		HandledScreens.register(ScreenHandlerRegistry.MAKE_A_DEAL.get(), MakeADealScreen::new);
+
+		// TODO add funky hud element so faeborn know how many contracts they have for sure
 	}
 }

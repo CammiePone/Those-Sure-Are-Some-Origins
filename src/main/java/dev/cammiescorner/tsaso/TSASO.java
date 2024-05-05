@@ -11,6 +11,7 @@ import dev.cammiescorner.tsaso.common.registry.ScreenHandlerRegistry;
 import dev.cammiescorner.tsaso.common.screens.MakeADealScreenHandler;
 import dev.upcraft.sparkweave.api.registry.RegistryService;
 import io.github.apace100.apoli.component.PowerHolderComponent;
+import io.github.apace100.apoli.power.ModifyPlayerSpawnPower;
 import io.github.apace100.apoli.power.PowerType;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.entity.player.PlayerEntity;
@@ -30,11 +31,17 @@ import org.quiltmc.qsl.networking.api.PlayerLookup;
 import org.quiltmc.qsl.networking.api.ServerPlayConnectionEvents;
 import org.quiltmc.qsl.networking.api.ServerPlayNetworking;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
 public class TSASO implements ModInitializer {
 	public static final String MOD_ID = "tsaso";
+	private static final List<String> DISALLOWED_POWERS = Arrays.asList(
+			"origins:hunger_over_time", "origins:invisibility", "origins:phantomize", "origins:phasing",
+			"origins:webbing", "origins:arcane_skin", "origins:end_spawn", "origins:nether_spawn"
+	);
 
 	/*
 	 * TODO all of a sudden, these are working without issue? keep an eye on them
@@ -129,5 +136,20 @@ public class TSASO implements ModInitializer {
 		powerComponent.sync();
 		sourcesComponent.removeSource(id);
 		lastDeathPlayerComponent.setLastDeathTime(sourceId, player.getWorld().getTime());
+	}
+
+	public static boolean isPowerAllowed(Collection<PowerType<?>> powerTypes, PowerType<?> powerType, PlayerEntity player) {
+		String name = powerType.getName().getString();
+
+		if(powerTypes.contains(powerType) || player.getComponent(PowerHolderComponent.KEY).hasPower(powerType))
+			return false;
+		if(name.startsWith("power.") && name.endsWith(".name"))
+			return false;
+		if(powerType.create(null) instanceof ModifyPlayerSpawnPower)
+			return false;
+		if(powerType.isHidden()) // TODO check subpower
+			return false;
+
+		return !DISALLOWED_POWERS.contains(powerType.getIdentifier().toString());
 	}
 }
